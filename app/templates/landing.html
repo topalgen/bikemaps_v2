@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}bikemaps Berlin — Fahrradunfaelle 2024{% endblock %}
+
+{% block content %}
+<header class="hero">
+  <hgroup>
+    <h1>{{ stats.total | int }} Fahrradunfaelle in Berlin</h1>
+    <p>Interaktive Visualisierung aller polizeilich erfassten Fahrradunfaelle 2024</p>
+  </hgroup>
+</header>
+
+<section class="stats-grid">
+  <article>
+    <h2>{{ stats.fatal }}</h2>
+    <p>Getoetete</p>
+  </article>
+  <article>
+    <h2>{{ stats.serious }}</h2>
+    <p>Schwer&shy;verletzte</p>
+  </article>
+  <article>
+    <h2>{{ stats.light }}</h2>
+    <p>Leicht&shy;verletzte</p>
+  </article>
+  <article>
+    <h2>{{ stats.car_percent }}%</h2>
+    <p>mit PKW-Beteiligung</p>
+  </article>
+</section>
+
+<section class="cta-section">
+  <div class="grid">
+    <a href="/heatmap" role="button">Heatmap erkunden</a>
+    <a href="/crossings" role="button" class="outline">Top 10 Kreuzungen</a>
+  </div>
+</section>
+
+<section class="chart-section">
+  <h3>Unfaelle nach Monat</h3>
+  <div class="bar-chart" id="monthly-chart">
+    {% set month_names = ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'] %}
+    {% set max_monthly = stats.monthly.values() | max %}
+    {% for m in range(1, 13) %}
+    <div class="bar-col">
+      <div class="bar" style="height: {{ (stats.monthly[m|string] / max_monthly * 100) | round }}%">
+        <span class="bar-value">{{ stats.monthly[m|string] }}</span>
+      </div>
+      <span class="bar-label">{{ month_names[m-1] }}</span>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

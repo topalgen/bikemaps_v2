@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}bikemaps Berlin{% endblock %}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  {% block head_extra %}{% endblock %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <nav class="container-fluid">
+    <ul>
+      <li><a href="/" class="brand"><strong>bikemaps</strong> Berlin</a></li>
+    </ul>
+    <ul>
+      <li><a href="/heatmap">Heatmap</a></li>
+      <li><a href="/crossings">Top 10 Kreuzungen</a></li>
+    </ul>
+  </nav>
+
+  <main {% block main_attrs %}class="container"{% endblock %}>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="container">
+    <small>Daten: Statistisches Bundesamt, Unfallatlas 2024 | Nur Fahrradunfaelle in Berlin</small>
+  </footer>
+
+  {% block scripts %}{% endblock %}
+</body>
+</html>

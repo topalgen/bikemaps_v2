@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}#{{ crossing.rank }} {{ crossing.name }} — bikemaps Berlin{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+{% endblock %}
+
+{% block content %}
+<div class="detail-header">
+  <hgroup>
+    <h1>#{{ crossing.rank }} {{ crossing.name }}</h1>
+    <p>{{ crossing.address }}</p>
+  </hgroup>
+</div>
+
+<div class="detail-grid">
+  <div>
+    <div id="crossing-map"></div>
+  </div>
+  <div class="detail-stats">
+    <article>
+      <h3>{{ crossing.count }} Unfaelle</h3>
+      <p>
+        {% if crossing.fatal %}<span class="severity-badge fatal">{{ crossing.fatal }} getoetet</span>{% endif %}
+        {% if crossing.serious %}<span class="severity-badge serious">{{ crossing.serious }} schwerverletzt</span>{% endif %}
+        <span class="severity-badge light">{{ crossing.light }} leichtverletzt</span>
+      </p>
+    </article>
+    <article>
+      <h3>Gefahrenwert: {{ crossing.score }}</h3>
+      <p>Berechnung: 10 &times; Getoetete + 4 &times; Schwer + 1 &times; Leicht</p>
+    </article>
+    <div class="analysis-box">
+      <h4>Was macht diese Kreuzung gefaehrlich?</h4>
+      <p>
+        An der {{ crossing.name }} ereigneten sich 2024 insgesamt {{ crossing.count }} Fahrradunfaelle.
+        {% if crossing.fatal %}
+        Darunter {{ crossing.fatal }} toedliche{{ 'r' if crossing.fatal == 1 else '' }} Unfall{{ '' if crossing.fatal == 1 else 'e' }}.
+        {% endif %}
+        {% if crossing.serious %}
+        {{ crossing.serious }} Unfall{{ '' if crossing.serious == 1 else 'e' }} fuehrte{{ 'n' if crossing.serious != 1 else '' }} zu schweren Verletzungen.
+        {% endif %}
+        Die Haeufung von Unfaellen an diesem Ort deutet auf strukturelle Defizite in der Verkehrsfuehrung hin.
+      </p>
+    </div>
+  </div>
+</div>
+
+<nav class="detail-nav">
+  {% if prev %}
+  <a href="/crossings/{{ prev.slug }}" role="button" class="outline">&larr; #{{ prev.rank }} {{ prev.name }}</a>
+  {% else %}
+  <span></span>
+  {% endif %}
+  <a href="/crossings" role="button" class="secondary">Alle Kreuzungen</a>
+  {% if next %}
+  <a href="/crossings/{{ next.slug }}" role="button" class="outline">#{{ next.rank }} {{ next.name }} &rarr;</a>
+  {% else %}
+  <span></span>
+  {% endif %}
+</nav>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+  const ACCIDENTS = {{ crossing.accidents | tojson }};
+  const CENTER = {{ crossing.center | tojson }};
+</script>
+<script src="{{ url_for('static', filename='js/crossing-map.js') }}"></script>
+{% endblock %}

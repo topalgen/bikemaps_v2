@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Top 10 gefaehrlichste Kreuzungen — bikemaps Berlin{% endblock %}
+
+{% block content %}
+<hgroup>
+  <h1>Top 10 gefaehrlichste Kreuzungen</h1>
+  <p>Ermittelt durch Clusteranalyse (DBSCAN) aller 4.452 Fahrradunfaelle 2024 in Berlin, gewichtet nach Unfallschwere.</p>
+</hgroup>
+
+<section class="crossing-cards">
+  {% for c in crossings %}
+  <article>
+    <a href="/crossings/{{ c.slug }}" class="crossing-card">
+      <div class="crossing-rank">#{{ c.rank }}</div>
+      <div class="crossing-info">
+        <h3>{{ c.name }}</h3>
+        <p class="crossing-meta">
+          {{ c.count }} Unfaelle |
+          {% if c.fatal %}<span class="severity-badge fatal">{{ c.fatal }} getoetet</span>{% endif %}
+          {% if c.serious %}<span class="severity-badge serious">{{ c.serious }} schwer</span>{% endif %}
+          <span class="severity-badge light">{{ c.light }} leicht</span>
+        </p>
+      </div>
+      <div class="crossing-score" title="Gefahrenwert">{{ c.score }}</div>
+    </a>
+  </article>
+  {% endfor %}
+</section>
+{% endblock %}

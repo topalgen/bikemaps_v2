@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% block title %}Heatmap — bikemaps Berlin{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+{% endblock %}
+
+{% block main_attrs %}class="container-fluid" style="padding:0;max-width:100%"{% endblock %}
+
+{% block content %}
+<div class="heatmap-wrapper">
+  <div id="map"></div>
+  <aside class="filter-sidebar">
+    <h3>Filter</h3>
+    <div class="filter-count">
+      <span id="count">—</span>
+      Unfaelle angezeigt
+    </div>
+
+    <fieldset class="filter-group">
+      <legend>Schwere</legend>
+      <div class="cb-row">
+        <input type="checkbox" id="sev-fatal" checked>
+        <label for="sev-fatal">Getoetet (Kat. 1)</label>
+      </div>
+      <div class="cb-row">
+        <input type="checkbox" id="sev-serious" checked>
+        <label for="sev-serious">Schwerverletzt (Kat. 2)</label>
+      </div>
+      <div class="cb-row">
+        <input type="checkbox" id="sev-light" checked>
+        <label for="sev-light">Leichtverletzt (Kat. 3)</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="filter-group">
+      <legend>Unfallgegner</legend>
+      <div class="cb-row">
+        <input type="checkbox" id="veh-car" checked>
+        <label for="veh-car">PKW</label>
+      </div>
+      <div class="cb-row">
+        <input type="checkbox" id="veh-truck" checked>
+        <label for="veh-truck">LKW / Gueterkfz</label>
+      </div>
+      <div class="cb-row">
+        <input type="checkbox" id="veh-motorcycle" checked>
+        <label for="veh-motorcycle">Motorrad</label>
+      </div>
+      <div class="cb-row">
+        <input type="checkbox" id="veh-pedestrian" checked>
+        <label for="veh-pedestrian">Fussgaenger</label>
+      </div>
+      <div class="cb-row">
+        <input type="checkbox" id="veh-other" checked>
+        <label for="veh-other">Sonstige / Alleinunfall</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="filter-group">
+      <legend>Uhrzeit</legend>
+      <div class="range-row">
+        <input type="number" id="hour-min" min="0" max="23" value="0">
+        <span>—</span>
+        <input type="number" id="hour-max" min="0" max="23" value="23">
+        <span>Uhr</span>
+      </div>
+    </fieldset>
+
+    <fieldset class="filter-group">
+      <legend>Monat</legend>
+      <select id="filter-month">
+        <option value="all">Alle Monate</option>
+        <option value="1">Januar</option>
+        <option value="2">Februar</option>
+        <option value="3">Maerz</option>
+        <option value="4">April</option>
+        <option value="5">Mai</option>
+        <option value="6">Juni</option>
+        <option value="7">Juli</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">Oktober</option>
+        <option value="11">November</option>
+        <option value="12">Dezember</option>
+      </select>
+    </fieldset>
+
+    <fieldset class="filter-group">
+      <legend>Wochentag</legend>
+      <select id="filter-weekday">
+        <option value="all">Alle Tage</option>
+        <option value="Mo">Montag</option>
+        <option value="Di">Dienstag</option>
+        <option value="Mi">Mittwoch</option>
+        <option value="Do">Donnerstag</option>
+        <option value="Fr">Freitag</option>
+        <option value="Sa">Samstag</option>
+        <option value="So">Sonntag</option>
+      </select>
+    </fieldset>
+
+    <fieldset class="filter-group">
+      <legend>Lichtverhaeltnisse</legend>
+      <select id="filter-light">
+        <option value="all">Alle</option>
+        <option value="Tageslicht">Tageslicht</option>
+        <option value="Daemmerung">Daemmerung</option>
+        <option value="Dunkelheit">Dunkelheit</option>
+      </select>
+    </fieldset>
+
+    <fieldset class="filter-group">
+      <legend>Strassenzustand</legend>
+      <select id="filter-road">
+        <option value="all">Alle</option>
+        <option value="trocken">Trocken</option>
+        <option value="nass/feucht">Nass / Feucht</option>
+        <option value="winterglatt">Winterglatt</option>
+      </select>
+    </fieldset>
+  </aside>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+<script src="{{ url_for('static', filename='js/heatmap.js') }}"></script>
+{% endblock %}
