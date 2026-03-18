@@ -111,3 +111,15 @@ document.querySelectorAll(".filter-sidebar input, .filter-sidebar select").forEa
   el.addEventListener("change", applyFilters);
   el.addEventListener("input", applyFilters);
 });
+
+// Reset button
+document.getElementById("filter-reset").addEventListener("click", () => {
+  document.querySelectorAll(".filter-sidebar input[type='checkbox']").forEach((cb) => { cb.checked = true; });
+  document.getElementById("hour-min").value = 0;
+  document.getElementById("hour-max").value = 23;
+  document.getElementById("filter-month").value = "all";
+  document.getElementById("filter-weekday").value = "all";
+  document.getElementById("filter-light").value = "all";
+  document.getElementById("filter-road").value = "all";
+  applyFilters();
+});

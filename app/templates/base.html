@@ -14,8 +14,8 @@
       <li><a href="/" class="brand"><strong>bikemaps</strong> Berlin</a></li>
     </ul>
     <ul>
-      <li><a href="/heatmap">Heatmap</a></li>
-      <li><a href="/crossings">Top 10 Kreuzungen</a></li>
+      <li><a href="/heatmap" {% if request.path == '/heatmap' %}aria-current="page"{% endif %}>Heatmap</a></li>
+      <li><a href="/crossings" {% if request.path.startswith('/crossings') %}aria-current="page"{% endif %}>Top 10 Kreuzungen</a></li>
     </ul>
   </nav>
 

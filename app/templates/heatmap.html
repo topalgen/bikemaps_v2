@@ -11,7 +11,10 @@
 <div class="heatmap-wrapper">
   <div id="map"></div>
   <aside class="filter-sidebar">
-    <h3>Filter</h3>
+    <div class="filter-header">
+      <h3>Filter</h3>
+      <button class="filter-reset" id="filter-reset" title="Alle Filter zurücksetzen">↺ Reset</button>
+    </div>
     <div class="filter-count">
       <span id="count">—</span>
       Unfaelle angezeigt
@@ -21,15 +24,15 @@
       <legend>Schwere</legend>
       <div class="cb-row">
         <input type="checkbox" id="sev-fatal" checked>
-        <label for="sev-fatal">Getoetet (Kat. 1)</label>
+        <label for="sev-fatal"><span class="cb-swatch cb-swatch--fatal"></span>Getoetet (Kat. 1)</label>
       </div>
       <div class="cb-row">
         <input type="checkbox" id="sev-serious" checked>
-        <label for="sev-serious">Schwerverletzt (Kat. 2)</label>
+        <label for="sev-serious"><span class="cb-swatch cb-swatch--serious"></span>Schwerverletzt (Kat. 2)</label>
       </div>
       <div class="cb-row">
         <input type="checkbox" id="sev-light" checked>
-        <label for="sev-light">Leichtverletzt (Kat. 3)</label>
+        <label for="sev-light"><span class="cb-swatch cb-swatch--light"></span>Leichtverletzt (Kat. 3)</label>
       </div>
     </fieldset>
 
