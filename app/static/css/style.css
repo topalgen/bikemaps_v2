@@ -135,11 +135,12 @@ nav .brand {
   color: var(--brand);
   font-size: 1.1rem;
 }
-nav a[aria-current="page"] {
-  color: var(--brand);
+nav ul a[aria-current="page"] {
+  color: var(--neutral-900) !important;
   font-weight: 600;
-  border-bottom: 2px solid var(--brand);
+  border-bottom: 2px solid var(--neutral-700);
   padding-bottom: 2px;
+  text-decoration: none;
 }
 
 /* ===== Hero ===== */
