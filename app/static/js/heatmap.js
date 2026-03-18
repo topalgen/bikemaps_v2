@@ -96,11 +96,12 @@ function applyFilters() {
     blur: 20,
     maxZoom: 15,
     gradient: {
-      0.2: "#ffffb2",
-      0.4: "#fecc5c",
-      0.6: "#fd8d3c",
-      0.8: "#f03b20",
-      1.0: "#bd0026",
+      0.15: "#fef9ef",
+      0.3: "#fdd49e",
+      0.5: "#fdbb84",
+      0.65: "#e76f51",
+      0.8: "#d90429",
+      1.0: "#a4031f",
     },
   }).addTo(map);
 }

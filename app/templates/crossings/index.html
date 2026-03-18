@@ -9,8 +9,8 @@
 
 <section class="crossing-cards">
   {% for c in crossings %}
-  <article>
-    <a href="/crossings/{{ c.slug }}" class="crossing-card">
+  <a href="/crossings/{{ c.slug }}" class="crossing-card">
+    <article>
       <div class="crossing-rank">#{{ c.rank }}</div>
       <div class="crossing-info">
         <h3>{{ c.name }}</h3>
@@ -21,9 +21,9 @@
           <span class="severity-badge light">{{ c.light }} leicht</span>
         </p>
       </div>
-      <div class="crossing-score" title="Gefahrenwert">{{ c.score }}</div>
-    </a>
-  </article>
+      <div class="crossing-score" title="Gefahrenwert">{{ c.score }}<small>Score</small></div>
+    </article>
+  </a>
   {% endfor %}
 </section>
 {% endblock %}

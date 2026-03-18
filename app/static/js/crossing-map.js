@@ -1,9 +1,9 @@
 // bikemaps Berlin — Mini-map for crossing detail page
 
 const SEVERITY_COLORS = {
-  fatal: "#e63946",
-  serious: "#f4a261",
-  light: "#a8dadc",
+  fatal: "#d90429",
+  serious: "#e76f51",
+  light: "#2a9d8f",
 };
 
 const map = L.map("crossing-map").setView(CENTER, 17);
