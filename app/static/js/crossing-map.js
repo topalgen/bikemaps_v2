@@ -19,11 +19,28 @@ const MONTH_NAMES = [
 
 const map = L.map("crossing-map").setView(CENTER, 17);
 
-// CartoDB Voyager — better building/street detail at high zoom
-L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
+// Base layers
+const voyager = L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
   subdomains: "abcd",
   maxZoom: 20,
+}).addTo(map);
+
+const cyclosm = L.tileLayer("https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png", {
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://www.cyclosm.org/">CyclOSM</a>',
+  subdomains: "abc",
+  maxZoom: 20,
+});
+
+const satellite = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+  attribution: '&copy; <a href="https://www.esri.com/">Esri</a>',
+  maxZoom: 19,
+});
+
+L.control.layers({
+  "Strasse": voyager,
+  "Radwege": cyclosm,
+  "Satellit": satellite,
 }).addTo(map);
 
 // Add markers and collect bounds
