@@ -661,3 +661,128 @@ footer {
     font-size: 0.8rem;
   }
 }
+
+/* ── Route Planner ─────────────────────────────────────────────────────────── */
+
+.route-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.route-input-row {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.route-input-row input[type="text"] {
+  flex: 1;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--neutral-200);
+  border-radius: 6px;
+  min-width: 0;
+}
+
+.route-locate-btn {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--neutral-200);
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: var(--accent);
+  transition: background 0.15s;
+}
+
+.route-locate-btn:hover {
+  background: var(--neutral-200);
+}
+
+.route-go-btn {
+  width: 100%;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.55rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 0.75rem;
+  transition: opacity 0.15s;
+}
+
+.route-go-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.route-go-btn:not(:disabled):hover {
+  opacity: 0.88;
+}
+
+.route-error {
+  background: #fff0f3;
+  border: 1px solid var(--brand);
+  color: var(--brand);
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.82rem;
+  margin-bottom: 0.75rem;
+}
+
+.route-stats {
+  margin-top: 0.25rem;
+}
+
+.route-meta {
+  font-size: 0.85rem;
+  color: var(--neutral-700);
+  margin-bottom: 0.5rem;
+}
+
+.route-sev-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  padding: 0.2rem 0;
+}
+
+/* Teardrop pin marker */
+.route-pin {
+  width: 22px;
+  height: 22px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.route-pin span {
+  transform: rotate(45deg);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+@media (max-width: 768px) {
+  .route-sidebar {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid var(--neutral-200);
+    max-height: 40vh;
+  }
+}

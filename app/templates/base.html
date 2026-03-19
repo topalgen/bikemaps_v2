@@ -16,6 +16,7 @@
     <ul>
       <li><a href="/heatmap" {% if request.path.rstrip('/') == '/heatmap' %}aria-current="page"{% endif %}>Heatmap</a></li>
       <li><a href="/crossings" {% if request.path.startswith('/crossings') %}aria-current="page"{% endif %}>Top 10 Kreuzungen</a></li>
+      <li><a href="/route" {% if request.path.startswith('/route') %}aria-current="page"{% endif %}>Route planen</a></li>
     </ul>
   </nav>
 

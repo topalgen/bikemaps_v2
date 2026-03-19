@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Route planen — bikemaps Berlin{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+{% endblock %}
+
+{% block main_attrs %}class="container-fluid heatmap-page" style="padding:0;max-width:100%"{% endblock %}
+
+{% block content %}
+<div class="heatmap-wrapper">
+  <div id="map"></div>
+  <aside class="filter-sidebar route-sidebar">
+    <h3>Route planen</h3>
+
+    <div class="route-input-group">
+      <div class="route-input-row">
+        <input type="text" id="route-start" placeholder="Startadresse" autocomplete="off">
+        <button class="route-locate-btn" id="locate-start" title="Meinen Standort verwenden">⊕</button>
+      </div>
+      <div class="route-input-row">
+        <input type="text" id="route-end" placeholder="Zieladresse" autocomplete="off">
+        <button class="route-locate-btn" id="locate-end" title="Meinen Standort verwenden">⊕</button>
+      </div>
+    </div>
+
+    <button class="route-go-btn" id="route-go">Route berechnen</button>
+
+    <div class="route-error" id="route-error" hidden></div>
+
+    <div class="route-stats" id="route-stats" hidden>
+      <div class="filter-count">
+        <span id="route-accident-count">—</span>
+        Unfälle entlang der Route
+      </div>
+
+      <div class="route-meta" id="route-meta"></div>
+
+      <div id="route-sev-breakdown"></div>
+
+      <div>
+        <div style="font-size:0.75rem;color:var(--neutral-700);margin-top:0.75rem;margin-bottom:0.25rem;">Gefahrenscore</div>
+        <div class="danger-bar">
+          <div class="danger-bar-fill" id="route-danger-fill" style="width:0%"></div>
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="{{ url_for('static', filename='js/route_planner.js') }}"></script>
+{% endblock %}
