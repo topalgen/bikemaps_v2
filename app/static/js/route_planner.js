@@ -1,7 +1,7 @@
 // bikemaps Berlin — Route Planner
 
 const OSRM_URL = "https://router.project-osrm.org/route/v1/cycling";
-const FILTER_RADIUS_M = 150;
+const FILTER_RADIUS_M = 100;
 const DANGER_MAX = 30; // normalisation cap for score display
 
 const SEV_COLOR = {
