@@ -26,11 +26,17 @@ const voyager = L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyag
   maxZoom: 20,
 }).addTo(map);
 
-const cyclosm = L.tileLayer("https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png", {
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://www.cyclosm.org/">CyclOSM</a>',
-  subdomains: "abc",
-  maxZoom: 20,
-});
+const radwege = L.layerGroup([
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
+    subdomains: "abcd",
+    maxZoom: 20,
+  }),
+  L.tileLayer("https://tile.waymarkedtrails.org/cycling/{z}/{x}/{y}.png", {
+    attribution: '&copy; <a href="https://cycling.waymarkedtrails.org/">Waymarked Trails</a>',
+    maxZoom: 18,
+    opacity: 0.8,
+  }),
+]);
 
 const satellite = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
   attribution: '&copy; <a href="https://www.esri.com/">Esri</a>',
@@ -39,7 +45,7 @@ const satellite = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/servi
 
 L.control.layers({
   "Strasse": voyager,
-  "Radwege": cyclosm,
+  "Radwege": radwege,
   "Satellit": satellite,
 }).addTo(map);
 
